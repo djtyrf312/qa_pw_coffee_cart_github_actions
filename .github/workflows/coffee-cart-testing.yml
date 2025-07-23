@@ -1,8 +1,4 @@
 name: Coffee-cart testing workflow
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 on:
   push:
     branches:
@@ -53,6 +49,10 @@ jobs:
           retention-days: 1
   publish-report:
     name: Report publication
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     needs: generate-report
     runs-on: ubuntu-latest
     steps:
