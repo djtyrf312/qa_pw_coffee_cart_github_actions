@@ -69,11 +69,14 @@ jobs:
  publish-report:
    name: Report publication
    permissions:
-    contents: read
-    pages: write
-    id-token: write
+     contents: read
+     pages: write
+     id-token: write
    needs: generate-report
    runs-on: ubuntu-latest
+   environment:
+     name: github-pages
+     url: ${{ steps.deployment.outputs.page_url }}
    steps:
      - name: Download all workflow run artifacts
        uses: actions/download-artifact@v4
@@ -83,4 +86,4 @@ jobs:
 
      - name: Deploy to GitHub Pages
        id: deployment
-       uses: actions/deploy-pages@v4.0.5
+       uses: actions/deploy-pages@v4
